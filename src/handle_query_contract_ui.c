@@ -111,6 +111,7 @@ void handle_query_contract_ui(void *parameters) {
                         set_deposit_eth_ui(msg);
                         break;
                 }
+                break;
             // Keep this
             default:
                 PRINTF("Received an invalid screenIndex\n");
