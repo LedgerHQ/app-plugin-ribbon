@@ -22,7 +22,7 @@ static void set_deposit_ui(ethQueryContractUI_t *msg, context_t *context) {
 
     // Defaults to ETH if no vault found.
     uint8_t decimals = WEI_TO_ETHER;
-    char ticker[MAX_TICKER_LEN] = "??? ";
+    char ticker[MAX_TICKER_LEN] = "???";
 
     vault_address_ticker_t *currentVault = NULL;
     for (uint8_t i = 0; i < NUM_VAULT_ADDRESS_COLLECTION; i++) {
@@ -47,7 +47,7 @@ static void set_deposit_ui(ethQueryContractUI_t *msg, context_t *context) {
 static void set_deposit_eth_ui(ethQueryContractUI_t *msg) {
     strlcpy(msg->title, "Deposit", msg->titleLength);
     uint8_t decimals = WEI_TO_ETHER;
-    char ticker[MAX_TICKER_LEN] = "ETH ";
+    char ticker[MAX_TICKER_LEN] = "ETH";
 
     amountToString(msg->pluginSharedRO->txContent->value.value,
                    msg->pluginSharedRO->txContent->value.length,
@@ -60,7 +60,7 @@ static void set_deposit_eth_ui(ethQueryContractUI_t *msg) {
 static void set_initiate_withdraw_ui(ethQueryContractUI_t *msg, context_t *context) {
     strlcpy(msg->title, "Initiate Withdraw", msg->titleLength);
     uint8_t decimals = WEI_TO_ETHER;
-    char ticker[MAX_TICKER_LEN] = "??? ";
+    char ticker[MAX_TICKER_LEN] = "???";
 
     vault_address_ticker_t *currentVault = NULL;
     for (uint8_t i = 0; i < NUM_VAULT_ADDRESS_COLLECTION; i++) {
@@ -85,7 +85,7 @@ static void set_initiate_withdraw_ui(ethQueryContractUI_t *msg, context_t *conte
 static void set_instant_withdraw_ui(ethQueryContractUI_t *msg, context_t *context) {
     strlcpy(msg->title, "Instant Withdraw", msg->titleLength);
     uint8_t decimals = WEI_TO_ETHER;
-    char ticker[MAX_TICKER_LEN] = "??? ";
+    char ticker[MAX_TICKER_LEN] = "???";
 
     vault_address_ticker_t *currentVault = NULL;
     for (uint8_t i = 0; i < NUM_VAULT_ADDRESS_COLLECTION; i++) {
