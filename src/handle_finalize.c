@@ -9,8 +9,7 @@ size_t convert_hex(uint8_t *dest, size_t count, const char *src) {
     return i;
 }
 
-void handle_finalize(void *parameters) {
-    ethPluginFinalize_t *msg = (ethPluginFinalize_t *) parameters;
+void handle_finalize(ethPluginFinalize_t *msg) {
     context_t *context = (context_t *) msg->pluginContext;
 
     msg->uiType = ETH_UI_TYPE_GENERIC;
