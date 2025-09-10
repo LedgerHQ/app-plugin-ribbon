@@ -8,9 +8,8 @@ static bool set_vault_ui(ethQueryContractUI_t *msg) {
     vault_address_ticker_t *currentVault = NULL;
     for (uint8_t i = 0; i < NUM_VAULT_ADDRESS_COLLECTION; i++) {
         currentVault = (vault_address_ticker_t *) PIC(&CONTRACT_ADDRESS_COLLECTION[i]);
-        if (memcmp(currentVault->contract_address,
-                   msg->pluginSharedRO->txContent->destination,
-                   ADDRESS_LENGTH) == 0) {
+        if (memcmp(currentVault->contract_address, msg->txContent->destination, ADDRESS_LENGTH) ==
+            0) {
             memset(msg->msg, 0, msg->msgLength);
             strlcpy(msg->msg, (char *) currentVault->vault_ticker, msg->msgLength);
             break;
@@ -29,9 +28,8 @@ static bool set_deposit_ui(ethQueryContractUI_t *msg, context_t *context) {
     vault_address_ticker_t *currentVault = NULL;
     for (uint8_t i = 0; i < NUM_VAULT_ADDRESS_COLLECTION; i++) {
         currentVault = (vault_address_ticker_t *) PIC(&CONTRACT_ADDRESS_COLLECTION[i]);
-        if (memcmp(currentVault->contract_address,
-                   msg->pluginSharedRO->txContent->destination,
-                   ADDRESS_LENGTH) == 0) {
+        if (memcmp(currentVault->contract_address, msg->txContent->destination, ADDRESS_LENGTH) ==
+            0) {
             decimals = currentVault->decimals;
             strncpy(ticker, (char *) currentVault->asset_ticker, sizeof(ticker));
             break;
@@ -51,8 +49,8 @@ static bool set_deposit_eth_ui(ethQueryContractUI_t *msg) {
     uint8_t decimals = WEI_TO_ETHER;
     char ticker[MAX_TICKER_LEN] = "ETH";
 
-    return amountToString(msg->pluginSharedRO->txContent->value.value,
-                          msg->pluginSharedRO->txContent->value.length,
+    return amountToString(msg->txContent->value.value,
+                          msg->txContent->value.length,
                           decimals,
                           ticker,
                           msg->msg,
@@ -67,9 +65,8 @@ static bool set_initiate_withdraw_ui(ethQueryContractUI_t *msg, context_t *conte
     vault_address_ticker_t *currentVault = NULL;
     for (uint8_t i = 0; i < NUM_VAULT_ADDRESS_COLLECTION; i++) {
         currentVault = (vault_address_ticker_t *) PIC(&CONTRACT_ADDRESS_COLLECTION[i]);
-        if (memcmp(currentVault->contract_address,
-                   msg->pluginSharedRO->txContent->destination,
-                   ADDRESS_LENGTH) == 0) {
+        if (memcmp(currentVault->contract_address, msg->txContent->destination, ADDRESS_LENGTH) ==
+            0) {
             decimals = currentVault->decimals;
             strncpy(ticker, (char *) currentVault->vault_token_ticker, sizeof(ticker));
             break;
@@ -92,9 +89,8 @@ static bool set_instant_withdraw_ui(ethQueryContractUI_t *msg, context_t *contex
     vault_address_ticker_t *currentVault = NULL;
     for (uint8_t i = 0; i < NUM_VAULT_ADDRESS_COLLECTION; i++) {
         currentVault = (vault_address_ticker_t *) PIC(&CONTRACT_ADDRESS_COLLECTION[i]);
-        if (memcmp(currentVault->contract_address,
-                   msg->pluginSharedRO->txContent->destination,
-                   ADDRESS_LENGTH) == 0) {
+        if (memcmp(currentVault->contract_address, msg->txContent->destination, ADDRESS_LENGTH) ==
+            0) {
             decimals = currentVault->decimals;
             strncpy(ticker, (char *) currentVault->vault_token_ticker, sizeof(ticker));
             break;
