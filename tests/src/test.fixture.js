@@ -3,7 +3,7 @@ import Eth from '@ledgerhq/hw-app-eth';
 import { generate_plugin_config } from './generate_plugin_config';
 import { parseEther, parseUnits, RLP} from "ethers/lib/utils";
 
-const transactionUploadDelay = 60000;
+const transactionUploadDelay = 60000 * 10;
 
 async function waitForAppScreen(sim) {
     await sim.waitUntilScreenIsNot(sim.getMainMenuSnapshot(), transactionUploadDelay);
@@ -19,14 +19,11 @@ const sim_options_nano = {
 
 const Resolve = require('path').resolve;
 
-const NANOS_ETH_PATH = Resolve('elfs/ethereum_nanos.elf');
 const NANOX_ETH_PATH = Resolve('elfs/ethereum_nanox.elf');
 
-const NANOS_PLUGIN_PATH = Resolve('elfs/plugin_nanos.elf');
 const NANOX_PLUGIN_PATH = Resolve('elfs/plugin_nanox.elf');
 
 const nano_models: DeviceModel[] = [
-    { name: 'nanos', letter: 'S', path: NANOS_PLUGIN_PATH, eth_path: NANOS_ETH_PATH },
     { name: 'nanox', letter: 'X', path: NANOX_PLUGIN_PATH, eth_path: NANOX_ETH_PATH }
 ];
 
@@ -47,7 +44,7 @@ let genericTx = {
     data: null,
 };
 
-const TIMEOUT = 1000000;
+const TIMEOUT = 100000000;
 
 // Generates a serializedTransaction from a rawHexTransaction copy pasted from etherscan.
 function txFromEtherscan(rawTx) {

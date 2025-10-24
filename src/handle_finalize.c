@@ -9,8 +9,7 @@ size_t convert_hex(uint8_t *dest, size_t count, const char *src) {
     return i;
 }
 
-void handle_finalize(void *parameters) {
-    ethPluginFinalize_t *msg = (ethPluginFinalize_t *) parameters;
+void handle_finalize(ethPluginFinalize_t *msg) {
     context_t *context = (context_t *) msg->pluginContext;
 
     msg->uiType = ETH_UI_TYPE_GENERIC;
@@ -18,7 +17,9 @@ void handle_finalize(void *parameters) {
     if (context->selectorIndex == DEPOSIT || context->selectorIndex == DEPOSIT_ETH ||
         context->selectorIndex == DEPOSIT_YIELD_TOKEN) {
         msg->numScreens = 2;
-    } else if (context->selectorIndex == INITIATE_WITHDRAWAL) {
+    } else if (context->selectorIndex == INITIATE_WITHDRAWAL ||
+               context->selectorIndex == INSTANT_WITHDRAW ||
+               context->selectorIndex == INSTANT_WITHDRAW_STETH) {
         msg->numScreens = 2;
     } else if (context->selectorIndex == COMPLETE_WITHDRAWAL) {
         msg->numScreens = 1;
